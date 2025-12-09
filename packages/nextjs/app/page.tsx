@@ -13,74 +13,124 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="flex items-center flex-col grow pt-10">
-        <div className="px-5">
+        <div className="px-5 max-w-4xl">
+          {/* Header */}
           <h1 className="text-center">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
-            <span className="block text-xl font-bold">(SpeedRunEthereum Challenge: Token Vendor extension)</span>
+            <span className="block text-xl font-bold mt-1">
+              SpeedRunEthereum – Challenge 02
+              <br /> 🏵 Token Vendor (ERC-20 Buy & Sell)
+            </span>
           </h1>
-          <div className="flex justify-center items-center space-x-2 flex-col">
+
+          {/* Connected Wallet */}
+          <div className="flex justify-center items-center space-x-2 flex-col mt-6">
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress} />
           </div>
 
-          <div className="flex items-center flex-col flex-grow pt-10">
-            <div className="px-5">
-              <h1 className="text-center mb-6">
-                <span className="block text-2xl mb-2">SpeedRunEthereum</span>
-                <span className="block text-4xl font-bold">Challenge: 🏵 Token Vendor 🤖</span>
-              </h1>
-              <div className="flex flex-col items-center justify-center">
-                <Image
-                  src="/hero.png"
-                  width="727"
-                  height="231"
-                  alt="challenge banner"
-                  className="rounded-xl border-4 border-primary"
-                />
-                <div className="max-w-3xl">
-                  <p className="text-center text-lg mt-8">
-                    🤖 Smart contracts are kind of like &quot;always on&quot; vending machines that anyone can access.
-                    Let&apos;s make a decentralized, digital currency. Then, let&apos;s build an unstoppable vending
-                    machine that will buy and sell the currency. We&apos;ll learn about the &quot;approve&quot; pattern
-                    for ERC20s and how contract to contract interactions work.
-                  </p>
-                  <p className="text-center text-lg">
-                    🌟 The final deliverable is an app that lets users purchase your ERC20 token, transfer it, and sell
-                    it back to the vendor. Deploy your contracts on your public chain of choice and then deploy your app
-                    to a public webserver. Submit the url on{" "}
-                    <a href="https://speedrunethereum.com/" target="_blank" rel="noreferrer" className="underline">
-                      SpeedRunEthereum.com
-                    </a>{" "}
-                    !
-                  </p>
-                </div>
-              </div>
+          {/* Hero Section */}
+          <div className="flex items-center flex-col flex-grow pt-12">
+            <Image
+              src="/hero.png"
+              width={727}
+              height={231}
+              alt="challenge banner"
+              className="rounded-xl border-4 border-primary"
+            />
+
+            <div className="max-w-3xl mt-10 text-lg space-y-5 text-center">
+              <p>
+                This challenge introduces the fundamentals of{" "}
+                <strong>ERC-20 tokens</strong>, vendor-style smart contracts,
+                and the <strong>approve → transferFrom</strong> pattern that
+                allows contracts to move tokens on behalf of users.
+              </p>
+
+              <p>
+                The <strong>Vendor</strong> contract allows users to:
+                <br />
+                🟢 Buy tokens using ETH  
+                🔄 Sell tokens back to the vendor  
+                📤 Transfer tokens to any wallet  
+                And learn how contract-to-contract interactions work.
+              </p>
+
+              <p>
+                You will interact with the ERC-20 contract{" "}
+                <strong>YourToken.sol</strong> and the{" "}
+                <strong>Vendor.sol</strong> contract deployed on Sepolia at:
+              </p>
+
+              <p className="font-semibold">
+                YourToken:{" "}
+                <Link
+                  href="https://sepolia.etherscan.io/address/0xD9B6C909c2333F77B195e3812b26e5Ec0be6C063"
+                  passHref
+                  className="link"
+                >
+                  0xD9B6C909c2333F77B195e3812b26e5Ec0be6C063
+                </Link>
+                <br />
+                Vendor:{" "}
+                <Link
+                  href="https://sepolia.etherscan.io/address/0xD1FE2cE313f798cD62e385AbbC0c96d85f9BBA3E"
+                  passHref
+                  className="link"
+                >
+                  0xD1FE2cE313f798cD62e385AbbC0c96d85f9BBA3E
+                </Link>
+              </p>
+
+              <p>
+                The final UI will let users seamlessly execute token purchases,
+                approvals, transfers, and redemptions — all powered by{" "}
+                <strong>
+                  Scaffold-ETH 2, Next.js, RainbowKit, Wagmi, Viem, and
+                  Hardhat.
+                </strong>
+              </p>
+
+              <p>
+                This challenge teaches how decentralized applications enable{" "}
+                <strong>
+                  permissionless value exchange without intermediaries
+                </strong>{" "}
+                — just smart contracts.
+              </p>
             </div>
           </div>
-        </div>
 
-        <div className="grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col md:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contracts
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
+          {/* Action Cards */}
+          <div className="grow bg-base-300 w-full mt-16 px-8 py-12 rounded-xl">
+            <div className="flex justify-center items-center gap-12 flex-col md:flex-row">
+              {/* Debug */}
+              <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+                <BugAntIcon className="h-8 w-8 fill-secondary" />
+                <p className="mt-4">
+                  Interact with the ERC-20 & Vendor smart contracts via{" "}
+                  <Link href="/debug" passHref className="link">
+                    Debug Contracts
+                  </Link>
+                  .
+                </p>
+              </div>
+
+              {/* Block Explorer */}
+              <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+                <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
+                <p className="mt-4">
+                  View transactions and on-chain data in the{" "}
+                  <Link
+                    href="https://sepolia.etherscan.io/"
+                    passHref
+                    className="link"
+                  >
+                    Block Explorer
+                  </Link>{" "}
+                  tab or on Etherscan.
+                </p>
+              </div>
             </div>
           </div>
         </div>
